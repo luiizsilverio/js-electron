@@ -1,0 +1,15 @@
+{
+  "name": "js-timer",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "electron ."
+  },
+  "author": "Luiz Oliveira <luiiz.silverio@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "electron": "^22.0.0"
+  }
+}

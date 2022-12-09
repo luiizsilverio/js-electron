@@ -30,8 +30,8 @@ let winSobre = null;
 ipcMain.on("abrir-sobre", () => {
   if (!winSobre) {
     winSobre = new BrowserWindow({
-      width: 300,
-      height: 200,
+      width: 330,
+      height: 250,
       alwaysOnTop: true,
       frame: false,       /* retira o menu e botões do topo da janela */
       webPreferences: {

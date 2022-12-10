@@ -1,20 +1,18 @@
-const { ipcRenderer, shell } = require("electron");
+const { ipcRenderer, shell } = require('electron');
 const process = require('process');
 
-const fechar = document.querySelector('#link-fechar');
-const github = document.querySelector('#link-github');
-const versao = document.querySelector('#versao');
+let linkFechar = document.querySelector("#link-fechar");
+let linkGithub = document.querySelector("#link-github");
+let versaoElectron = document.querySelector('#versao-electron');
 
-fechar.addEventListener('click', () => {
+window.onload = function(){
+    versaoElectron.textContent = process.versions.electron;
+}
+
+linkFechar.addEventListener('click', function () {
     ipcRenderer.send('fechar-sobre');
 })
 
-github.addEventListener('click', () => {
-    // o link normal abre o endereço na própria janela do Electron
-    // por isso, usamos o comando abaixo para abrir no navegador.
-    shell.openExternal('https://github.com/luiizsilverio');
+linkGithub.addEventListener('click', function () {
+    shell.openExternal("https://github.com/luiizsilverio");
 })
-
-window.onload = () => {
-    versao.textContent = process.versions.electron;
-}

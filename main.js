@@ -1,10 +1,12 @@
 const { app, BrowserWindow, ipcMain } = require('electron');
 const path = require('path');
 
+app.disableHardwareAcceleration(); // desativa o hardware acceleration, evitando erros
+
 function createWindow() {
 	const win = new BrowserWindow({
-        width: 800,
-        height: 600,
+        width: 700,
+        height: 500,
         webPreferences: {
           nodeIntegration: true,
           contextIsolation: false
@@ -31,9 +33,10 @@ ipcMain.on("abrir-sobre", () => {
   if (!winSobre) {
     winSobre = new BrowserWindow({
       width: 330,
-      height: 250,
+      height: 270,
       alwaysOnTop: true,
       frame: false,       /* retira o menu e botões do topo da janela */
+      resizable: false,
       webPreferences: {
         nodeIntegration: true,
         contextIsolation: false

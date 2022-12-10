@@ -1,5 +1,6 @@
 const { ipcRenderer } = require("electron");
 const timer = require('./js/timer');
+const data = require('../data');
 
 const sobre = document.querySelector('#link-sobre');
 const btnPlay = document.querySelector('.botao-play');
@@ -22,3 +23,10 @@ btnPlay.addEventListener('click', () => {
         timer.parar(curso.textContent);
     }
 })
+
+window.onload = () => {
+    data.buscarDadosCurso(curso.textContent)
+        .then((dados) => {
+            tempo.textContent = dados.tempo;
+        })
+}

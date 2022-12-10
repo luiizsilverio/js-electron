@@ -1,5 +1,6 @@
 const { app, BrowserWindow, ipcMain } = require('electron');
 const path = require('path');
+const data = require('./data');
 
 app.disableHardwareAcceleration(); // desativa o hardware acceleration, evitando erros
 
@@ -53,4 +54,8 @@ ipcMain.on("abrir-sobre", () => {
 
 ipcMain.on("fechar-sobre", () => {
   winSobre.close();
+})
+
+ipcMain.on('curso-parado', (event, curso, tempoEstudado) => {
+  data.salvaDados(curso, tempoEstudado);
 })

@@ -1,9 +1,10 @@
 const { ipcRenderer } = require("electron");
-const timer = require('./timer.js');
+const timer = require('./js/timer');
 
 const sobre = document.querySelector('#link-sobre');
 const btnPlay = document.querySelector('.botao-play');
 const tempo = document.querySelector('.tempo');
+const curso = document.querySelector('.curso');
 
 sobre.addEventListener('click', () => {
     ipcRenderer.send('abrir-sobre');
@@ -18,6 +19,6 @@ btnPlay.addEventListener('click', () => {
     if (btnPlay.classList.contains('play')) {
         timer.iniciar(tempo);
     } else {
-        timer.parar();
+        timer.parar(curso.textContent);
     }
 })

@@ -54,3 +54,7 @@ ipcMain.on("abrir-sobre", () => {
 ipcMain.on("fechar-sobre", () => {
   winSobre.close();
 })
+
+ipcMain.on('curso-parado', (event, curso, tempoEstudado) => {
+
+})

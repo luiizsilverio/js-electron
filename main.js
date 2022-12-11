@@ -1,6 +1,9 @@
-const { app, BrowserWindow, ipcMain } = require('electron');
+const { app, BrowserWindow, ipcMain, Tray, Menu } = require('electron');
 const path = require('path');
 const data = require('./data');
+const templateGenerator = require('./template');
+
+let tray = null;
 
 app.disableHardwareAcceleration(); // desativa o hardware acceleration, evitando erros
 
@@ -13,6 +16,15 @@ function createWindow() {
           contextIsolation: false
         }
 	});
+
+  tray = new Tray(path.join(__dirname, "app", "img", "icon-tray.png"));
+
+  let template = templateGenerator.geraTrayTemplate();
+
+  let trayMenu = Menu.buildFromTemplate(template);
+
+  tray.setContextMenu(trayMenu);
+
   win.loadURL(path.join(__dirname, "app", "index.html"));
 }
 

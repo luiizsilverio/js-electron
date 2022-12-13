@@ -1,7 +1,7 @@
 const data = require('./data');
 
 module.exports = {
-    geraTrayTemplate() {
+    geraTrayTemplate(win) {
         let template = [
             {
                 label: 'Cursos'
@@ -16,7 +16,10 @@ module.exports = {
         cursos.forEach(curso => {
             template.push({
                 label: curso,
-                type: 'radio'
+                type: 'radio',
+                click: () => {
+                    win.send('curso-trocado', curso);
+                }
             })
         })
 

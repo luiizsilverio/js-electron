@@ -8,7 +8,7 @@ let tray = null;
 app.disableHardwareAcceleration(); // desativa o hardware acceleration, evitando erros
 
 function createWindow() {
-	const win = new BrowserWindow({
+	const mainWindow = new BrowserWindow({
         width: 700,
         height: 500,
         webPreferences: {
@@ -18,14 +18,11 @@ function createWindow() {
 	});
 
   tray = new Tray(path.join(__dirname, "app", "img", "icon-tray.png"));
-
-  let template = templateGenerator.geraTrayTemplate();
-
+  let template = templateGenerator.geraTrayTemplate(mainWindow);
   let trayMenu = Menu.buildFromTemplate(template);
-
   tray.setContextMenu(trayMenu);
 
-  win.loadURL(path.join(__dirname, "app", "index.html"));
+  mainWindow.loadURL(path.join(__dirname, "app", "index.html"));
 }
 
 app.whenReady().then(() => {
@@ -34,6 +31,7 @@ app.whenReady().then(() => {
 // 		if (BrowserWindow.getAllWindows().length === 0) createWindow();
 // 	})
 })
+
 
 app.on("window-all-closed", () => {
 	if (process.plataform !== "darwin") app.quit();

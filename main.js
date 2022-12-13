@@ -1,11 +1,14 @@
-const { app, BrowserWindow, ipcMain } = require('electron');
+const { app, BrowserWindow, ipcMain, Tray, Menu } = require('electron');
 const path = require('path');
 const data = require('./data');
+const templateGenerator = require('./template');
+
+let tray = null;
 
 app.disableHardwareAcceleration(); // desativa o hardware acceleration, evitando erros
 
 function createWindow() {
-	const win = new BrowserWindow({
+	const mainWindow = new BrowserWindow({
         width: 700,
         height: 500,
         webPreferences: {
@@ -13,7 +16,13 @@ function createWindow() {
           contextIsolation: false
         }
 	});
-  win.loadURL(path.join(__dirname, "app", "index.html"));
+
+  tray = new Tray(path.join(__dirname, "app", "img", "icon-tray.png"));
+  let template = templateGenerator.geraTrayTemplate(mainWindow);
+  let trayMenu = Menu.buildFromTemplate(template);
+  tray.setContextMenu(trayMenu);
+
+  mainWindow.loadURL(path.join(__dirname, "app", "index.html"));
 }
 
 app.whenReady().then(() => {
@@ -22,6 +31,7 @@ app.whenReady().then(() => {
 // 		if (BrowserWindow.getAllWindows().length === 0) createWindow();
 // 	})
 })
+
 
 app.on("window-all-closed", () => {
 	if (process.plataform !== "darwin") app.quit();

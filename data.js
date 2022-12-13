@@ -30,5 +30,10 @@ module.exports = {
     buscarDadosCurso(curso) {
         const arquivo = __dirname + '/data/' + curso + '.json';
         return jsonfile.readFile(arquivo);
+    },
+    getCursos() {
+        const arquivos = fs.readdirSync(__dirname + '/data');
+        const cursos = arquivos.map(curso => curso.split('.json')[0]);
+        return cursos;
     }
 }

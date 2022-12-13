@@ -5,7 +5,7 @@ const data = require('../data');
 const sobre = document.querySelector('#link-sobre');
 const btnPlay = document.querySelector('.botao-play');
 const tempo = document.querySelector('.tempo');
-const curso = document.querySelector('.curso');
+const cursoEl = document.querySelector('.curso');
 
 sobre.addEventListener('click', () => {
     ipcRenderer.send('abrir-sobre');
@@ -20,12 +20,22 @@ btnPlay.addEventListener('click', () => {
     if (btnPlay.classList.contains('play')) {
         timer.iniciar(tempo);
     } else {
-        timer.parar(curso.textContent);
+        timer.parar(cursoEl.textContent);
     }
 })
 
+
+ipcRenderer.on("curso-trocado", (event, curso) => {
+    cursoEl.textContent = curso;
+    data.buscarDadosCurso(curso)
+       .then((dados) => {
+         tempo.textContent = dados.tempo;
+       })
+})
+
+
 window.onload = () => {
-    data.buscarDadosCurso(curso.textContent)
+    data.buscarDadosCurso(cursoEl.textContent)
         .then((dados) => {
             tempo.textContent = dados.tempo;
         })

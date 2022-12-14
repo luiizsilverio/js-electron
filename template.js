@@ -1,3 +1,4 @@
+const { ipcMain } = require('electron');
 const data = require('./data');
 
 module.exports = {
@@ -40,5 +41,59 @@ module.exports = {
         });
 
         return this.templateInicial;
+    },
+
+    geraMenuPrincipal(app) {
+        let templateMenu = [
+            {
+                label: 'Menu',
+                submenu: [
+                    {
+                        label: '&Sobre a aplicação',
+                        click: () => {
+                            ipcMain.emit('abrir-sobre');
+                        }
+                    },
+                    {
+                        label: 'Fechar',
+                        role: 'close',
+                    }
+                ]
+            },
+            {
+              label: 'Janela',
+              submenu: [
+                {
+                    label: 'Recarregar',
+                    role: 'reload'
+                },
+                {
+                    label: 'Painel do Desenvolvedor',
+                    role: 'toggleDevTools',
+                },
+                {
+                    label: 'Zoom +',
+                    role: 'zoomIn',
+                },
+                {
+                    label: 'Zoom -',
+                    role: 'zoomOut',
+                }
+              ]
+            }
+        ]
+
+        if (process.platform === 'darwin') {
+            templateMenu.unshift({
+                label: app.getName(),
+                submenu: [
+                    {
+                        label: 'Mac exige isso'
+                    },
+                ]
+            })
+        }
+
+        return templateMenu;
     }
 }

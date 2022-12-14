@@ -4,17 +4,18 @@ const data = require('./data');
 const templateGenerator = require('./template');
 
 let tray = null;
+let mainWindow = null;
 
 app.disableHardwareAcceleration(); // desativa o hardware acceleration, evitando erros
 
 function createWindow() {
-	const mainWindow = new BrowserWindow({
-        width: 700,
-        height: 500,
-        webPreferences: {
-          nodeIntegration: true,
-          contextIsolation: false
-        }
+	mainWindow = new BrowserWindow({
+    width: 700,
+    height: 500,
+    webPreferences: {
+      nodeIntegration: true,
+      contextIsolation: false
+    }
 	});
 
   tray = new Tray(path.join(__dirname, "app", "img", "icon-tray.png"));
@@ -68,4 +69,10 @@ ipcMain.on("fechar-sobre", () => {
 
 ipcMain.on('curso-parado', (event, curso, tempoEstudado) => {
   data.salvaDados(curso, tempoEstudado);
+})
+
+ipcMain.on('curso-adicionado', (event, curso) => {
+  let template = templateGenerator.adicionaCursoNoTray(curso, mainWindow);
+  let trayMenu = Menu.buildFromTemplate(template);
+  tray.setContextMenu(trayMenu);
 })

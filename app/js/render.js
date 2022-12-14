@@ -6,6 +6,8 @@ const sobre = document.querySelector('#link-sobre');
 const btnPlay = document.querySelector('.botao-play');
 const tempo = document.querySelector('.tempo');
 const cursoEl = document.querySelector('.curso');
+const btnAdd = document.querySelector('.botao-adicionar');
+const inputAdd = document.querySelector('.campo-adicionar');
 
 sobre.addEventListener('click', () => {
     ipcRenderer.send('abrir-sobre');
@@ -40,3 +42,12 @@ window.onload = () => {
             tempo.textContent = dados.tempo;
         })
 }
+
+btnAdd.addEventListener('click', () => {
+    let newCurso = inputAdd.value;
+    cursoEl.textContent = newCurso;
+    tempo.textContent = '00:00:00';
+    inputAdd.value = '';
+
+    ipcRenderer.send('curso-adicionado', newCurso);
+})

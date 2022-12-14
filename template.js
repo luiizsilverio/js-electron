@@ -1,6 +1,8 @@
 const data = require('./data');
 
 module.exports = {
+    templateInicial: null,
+
     geraTrayTemplate(win) {
         let template = [
             {
@@ -23,6 +25,20 @@ module.exports = {
             })
         })
 
+        this.templateInicial = template;
         return template;
+    },
+
+    adicionaCursoNoTray(curso, win) {
+        this.templateInicial.push({
+            label: curso,
+            type: 'radio',
+            checked: true,
+            click: () => {
+                win.send('curso-trocado', curso);
+            }
+        });
+
+        return this.templateInicial;
     }
 }

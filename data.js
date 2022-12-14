@@ -11,6 +11,7 @@ module.exports = {
                 .then(() => {
                     this.adicionaTempoCurso(arquivo, tempoEstudado);
                 })
+                .catch((err) => console.log(err));
         }
     },
     adicionaTempoCurso(arquivo, tempoEstudado) {

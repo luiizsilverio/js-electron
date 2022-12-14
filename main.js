@@ -18,13 +18,20 @@ function createWindow() {
     }
 	});
 
+  // Menu do ícone no Tray
   tray = new Tray(path.join(__dirname, "app", "img", "icon-tray.png"));
   let template = templateGenerator.geraTrayTemplate(mainWindow);
   let trayMenu = Menu.buildFromTemplate(template);
   tray.setContextMenu(trayMenu);
 
+  // mainWindow.openDevTools(); // abre o painel de desenvolvedor
   mainWindow.loadURL(path.join(__dirname, "app", "index.html"));
 }
+
+// Menu da aplicação
+let templateMenu = templateGenerator.geraMenuPrincipal(app);
+let menuPrincipal = Menu.buildFromTemplate(templateMenu);
+Menu.setApplicationMenu(menuPrincipal);
 
 app.whenReady().then(() => {
 	createWindow();

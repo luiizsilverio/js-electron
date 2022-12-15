@@ -21,8 +21,16 @@ btnPlay.addEventListener('click', () => {
     btnPlay.classList.toggle('play');
     if (btnPlay.classList.contains('play')) {
         timer.iniciar(tempo);
+        new Notification('Alura Timer', {
+          body: `O curso ${cursoEl.textContent} foi iniciado`,
+          icon: './img/play-button.png'
+        });
     } else {
         timer.parar(cursoEl.textContent);
+        new Notification('Alura Timer', {
+          body: `O curso ${cursoEl.textContent} foi parado`,
+          icon: './img/stop-button.png'
+        });
     }
 })
 
@@ -30,17 +38,17 @@ btnPlay.addEventListener('click', () => {
 ipcRenderer.on("curso-trocado", (event, curso) => {
     cursoEl.textContent = curso;
     data.buscarDadosCurso(curso)
-       .then((dados) => {
-         tempo.textContent = dados.tempo;
-       })
+      .then((dados) => {
+        tempo.textContent = dados.tempo;
+      })
 })
 
 
 window.onload = () => {
     data.buscarDadosCurso(cursoEl.textContent)
-        .then((dados) => {
-            tempo.textContent = dados.tempo;
-        })
+      .then((dados) => {
+          tempo.textContent = dados.tempo;
+      })
 }
 
 btnAdd.addEventListener('click', () => {
@@ -50,4 +58,10 @@ btnAdd.addEventListener('click', () => {
     inputAdd.value = '';
 
     ipcRenderer.send('curso-adicionado', newCurso);
+})
+
+ipcRenderer.on("iniciar-parar", () => {
+  // simular evento de clique
+  let click = new MouseEvent('click');
+  btnPlay.dispatchEvent(click);
 })

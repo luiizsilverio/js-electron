@@ -49,7 +49,8 @@ module.exports = {
                 label: 'Menu',
                 submenu: [
                     {
-                        label: '&Sobre a aplicação',
+                        label: 'Sobre a aplicação',
+                        accelerator: 'Ctrl+S',
                         click: () => {
                             ipcMain.emit('abrir-sobre');
                         }

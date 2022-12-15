@@ -1,4 +1,4 @@
-const { app, BrowserWindow, ipcMain, Tray, Menu } = require('electron');
+const { app, BrowserWindow, ipcMain, Tray, Menu, globalShortcut } = require('electron');
 const path = require('path');
 const data = require('./data');
 const templateGenerator = require('./template');
@@ -23,6 +23,11 @@ function createWindow() {
   let template = templateGenerator.geraTrayTemplate(mainWindow);
   let trayMenu = Menu.buildFromTemplate(template);
   tray.setContextMenu(trayMenu);
+
+  // Define os atalhos globais, que podem ser acionados com a aplicação minimizada.
+  globalShortcut.register('Ctrl+Shift+P', () => {
+    mainWindow.send('iniciar-parar');
+  })
 
   // mainWindow.openDevTools(); // abre o painel de desenvolvedor
   mainWindow.loadURL(path.join(__dirname, "app", "index.html"));

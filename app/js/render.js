@@ -41,6 +41,10 @@ ipcRenderer.on("curso-trocado", (event, curso) => {
       .then((dados) => {
         tempo.textContent = dados.tempo;
       })
+      .catch((err) => {
+        console.log('O curso ainda não poussui um JSON');
+        tempo.textContent = "00:00:00";
+      })
 })
 
 
@@ -53,6 +57,12 @@ window.onload = () => {
 
 btnAdd.addEventListener('click', () => {
     let newCurso = inputAdd.value;
+
+    if (!newCurso) {
+      console.log('Informe o nome do curso');
+      return;
+    }
+
     cursoEl.textContent = newCurso;
     tempo.textContent = '00:00:00';
     inputAdd.value = '';

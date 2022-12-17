@@ -1,4 +1,9 @@
-<h1 align="center"> JS-TIMER</h1>
+<table align="center">
+  <tr>
+    <td><img src=".github/icon.png" width="60px"/></td>
+    <td><h1>JS-TIMER</h1></td>
+  </tr>
+</table>
 
 <p align="center">
 Aplicação desenvolvida em Javascript com Electron, durante o curso <br/>

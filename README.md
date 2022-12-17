@@ -30,9 +30,10 @@ Esse projeto foi desenvolvido com as seguintes tecnologias:
 ## 💻 Projeto
 
 É uma aplicação Javascript no formato desktop (executável) que permite criar cursos e iniciar o Timer de estudos de cada curso.
-O programa memoriza o tempo de estudo de cada curso.
+O programa memoriza o tempo de estudo de cada curso e envia notificação para o Windows sempre que iniciamos o curso.
 Além disso, exibe um ícone na barra de tarefas, com um menu para selecionar o curso.
 <br />
+![](https://github.com/luiizsilverio/js-electron/blob/master/app/img/tela.png)
 
 
 ## :car: Iniciando a aplicação

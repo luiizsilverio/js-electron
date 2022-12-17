@@ -1,7 +1,8 @@
 <h1 align="center"> JS-TIMER</h1>
 
 <p align="center">
-Aplicação desenvolvida em Javascript com Electron, durante o curso <a href="https://cursos.alura.com.br/course/electron">Electron: crie aplicativos Desktop com as tecnologias da Web</a>, da Alura. <br />
+Aplicação desenvolvida em Javascript com Electron, durante o curso <br/>
+<a href="https://cursos.alura.com.br/course/electron">Electron: crie aplicativos Desktop com as tecnologias da Web</a>, da Alura. <br />
 </p>
 
 <p align="center">
@@ -10,6 +11,7 @@ Aplicação desenvolvida em Javascript com Electron, durante o curso <a href="ht
   <a href="#car-Iniciando-a-aplicação">Iniciando a aplicação</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#memo-licença">Licença</a>
 </p>
+<br />
 
 <p align="center">
   <img alt="License" src="https://img.shields.io/static/v1?label=license&message=MIT&color=49AA26&labelColor=000000">
@@ -17,7 +19,7 @@ Aplicação desenvolvida em Javascript com Electron, durante o curso <a href="ht
 <br>
 
 <p align="center">
-  <img alt="rocketpay" src=".github/screenshot.png" width="100%">
+  <img alt="alura-timer" src=".github/tela.png" width="100%">
 </p>
 
 ## 🚀 Tecnologias
@@ -33,7 +35,6 @@ Esse projeto foi desenvolvido com as seguintes tecnologias:
 O programa memoriza o tempo de estudo de cada curso e envia notificação para o Windows sempre que iniciamos o curso.
 Além disso, exibe um ícone na barra de tarefas, com um menu para selecionar o curso.
 <br />
-![](https://github.com/luiizsilverio/js-electron/blob/master/app/img/tela.png)
 
 
 ## :car: Iniciando a aplicação
